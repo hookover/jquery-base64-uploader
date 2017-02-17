@@ -1,7 +1,6 @@
 /**
  * Created by chenjiang on 17-2-16.
  * chenjiang@xiaomi.com
- * https://github.com/baoniu
  *
  * 插件功能：多文件ajax post方式上传，文件数据在本地转换为base64字符串形式
  * 在 firefox 51.0.1、chrome 56.0.2924.87 上测试通过
