@@ -97,7 +97,7 @@
             });
         }
     };
-    $.fn.MipostFile = function (options) {
+    $.fn.MiPostFile = function (options) {
         var _bn = new bn(this, options);
         _bn.onHook();
     };
