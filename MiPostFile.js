@@ -50,7 +50,7 @@
             this.vars.files = [];
             this.vars.post_data.uploads = [];
         },
-        fileToBase64: function (/* file object */ file, /* 回调函数,返回文件名称，类型，base64编码 */callback, /*改变callback函数內部this指针指向obj*/obj) {
+        fileToBase64: function (/* file object */ file, /* 回调函数,返回文件名称，类型，base64编码 */callback, /*改变回调函数this指针*/obj) {
             var reader = new FileReader();
             reader.onload = function(e){
                 var data = {
@@ -78,8 +78,21 @@
                 complete: this.options.complete
             });
         },
+        deepDepthCopy: function (obj) {
+            if(typeof obj != 'Object') {
+                return obj;
+            }
+            var new_obj = {};
+            for (var attr in obj) {
+                new_obj[attr] = this.deepDepthCopy(obj[attr]);
+            }
+            return new_obj;
+        },
+        pushData: function (data) {
+            this.vars.post_data.uploads.push(this.deepDepthCopy(data));
+        },
         cantPost: function (data) {
-            this.vars.post_data.uploads.push(data);
+            this.pushData(data);
             if(this.vars.post_data.uploads.length ==  this.vars.files.length) {
                 this.ajaxPost();
                 this.reset_vars();
@@ -87,7 +100,7 @@
         },
         onHook: function () {
             var _self = this;
-            $(document).on("change",this.$.selector,function (e) {
+            $(document).on("change", this.$.selector, function (e) {
                 var files = $(e.target).get(0).files;
                 _self.vars.files = files;
                 for(var i=0;i<files.length;i++) {
