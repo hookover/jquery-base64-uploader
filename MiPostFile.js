@@ -87,8 +87,8 @@
         },
         onHook: function () {
             var _self = this;
-            this.$.on('change',function (e) {
-                var files = $(this).get(0).files;
+            $(document).on("change",$(this.$),function (e) {
+                var files = $(e.target).get(0).files;
                 _self.vars.files = files;
                 for(var i=0;i<files.length;i++) {
                     var file = files[i];
