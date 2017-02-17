@@ -50,7 +50,7 @@
             this.vars.files = [];
             this.vars.post_data.uploads = [];
         },
-        fileToBase64: function (/* file object */ file, /* 回调函数,返回文件名称，类型，base64编码 */callback, /*改变回调函数this指针*/obj) {
+        fileToBase64: function (/* file object */ file, /* 回调函数,返回文件名称，类型，base64编码 */callback, /*改变callback函数內部this指针指向obj*/obj) {
             var reader = new FileReader();
             reader.onload = function(e){
                 var data = {
@@ -87,7 +87,7 @@
         },
         onHook: function () {
             var _self = this;
-            $(document).on("change",$(this.$),function (e) {
+            $(document).on("change",this.$.selector,function (e) {
                 var files = $(e.target).get(0).files;
                 _self.vars.files = files;
                 for(var i=0;i<files.length;i++) {
