@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    通过HTML5的FileReader将文件转化为Base64,
+    此插件选择完文件会自动上传,支持多文件
+</div>
+<input id="upload-input" type="file" multiple="multiple">
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="MiFilePost.js"></script>
+<script>
+    $("#upload-input").MipostFile({
+        url: 'upload.php',
+        success: function(data,status,xhr){
+            alert('已上传至服务器')
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert('服务器错误')
+        }
+    });
+</script>
+</body>
+</html>
