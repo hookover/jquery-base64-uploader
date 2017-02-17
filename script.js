@@ -8,7 +8,7 @@ $(function () {
         e.preventDefault();
     });
 
-    $("#upload-input").MipostFile({
+    $("#upload-input").MiPostFile({
         url: 'upload.php',
         success: function(data,status,xhr){
             data = JSON.parse(data);
