@@ -46,7 +46,7 @@
         this.vars = $.extend({}, this.default_vars);
     };
     bn.prototype = {
-        reset_vars: function () {
+        resetVars: function () {
             this.vars.files = [];
             this.vars.post_data.uploads = [];
         },
@@ -95,7 +95,7 @@
             this.pushData(data);
             if(this.vars.post_data.uploads.length ==  this.vars.files.length) {
                 this.ajaxPost();
-                this.reset_vars();
+                this.resetVars();
             }
         },
         onHook: function () {
